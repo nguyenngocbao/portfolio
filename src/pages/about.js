@@ -58,16 +58,16 @@ export default function About() {
                 BIOGRAPHY
               </h2>
               <p className="font-medium ">
-              Hi! I'm <strong>Nguyễn Ngọc Bảo</strong>, a seasoned developer with over 5 years of experience in crafting efficient and innovative software solutions. Throughout my career, I've honed my skills across a wide spectrum of programming languages and technologies, consistently turning complex challenges into elegant, functional code.
+              Hi! I&apos;m <strong>Nguyễn Ngọc Bảo</strong>, a seasoned developer with over 5 years of experience in crafting efficient and innovative software solutions. Throughout my career, I&apos;ve honed my skills across a wide spectrum of programming languages and technologies, consistently turning complex challenges into elegant, functional code.
               </p>
               <p className="my-4 font-medium">
-              My approach to development is comprehensive – I believe in creating software that's not only technically robust but also intuitive and future-proof. Whether I'm developing responsive front-end interfaces or architecting scalable back-end systems, every project I undertake is driven by a commitment to building applications that excel in both performance and user experience.
+              My approach to development is comprehensive – I believe in creating software that&apos;s not only technically robust but also intuitive and future-proof. Whether I&apos;m developing responsive front-end interfaces or architecting scalable back-end systems, every project I undertake is driven by a commitment to building applications that excel in both performance and user experience.
               </p>
               <p className="font-medium">
-              From web applications to enterprise solutions, I tackle each project with a blend of technical expertise and creative problem-solving. I'm passionate about staying at the forefront of technology, constantly exploring emerging trends and methodologies to ensure my skills and solutions remain cutting-edge.
+              From web applications to enterprise solutions, I tackle each project with a blend of technical expertise and creative problem-solving. I&apos;m passionate about staying at the forefront of technology, constantly exploring emerging trends and methodologies to ensure my skills and solutions remain cutting-edge.
               </p>
               <p className="font-medium">
-              Clean code, performance optimization, and security are the cornerstones of my development philosophy. With my diverse programming skills and dedication to quality, I'm excited about the opportunity to contribute to your next project. Let's collaborate to transform your ideas into reality and create something truly impactful!
+              Clean code, performance optimization, and security are the cornerstones of my development philosophy. With my diverse programming skills and dedication to quality, I&apos;m excited about the opportunity to contribute to your next project. Let&apos;s collaborate to transform your ideas into reality and create something truly impactful!
               </p>
             </div>
             <div className="relative col-span-3 h-max rounded-2xl border-2 border-solid border-dark 

@@ -43,7 +43,7 @@ export default function Home() {
                 className="!text-left !text-6xl xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl"
               />
               <p className="my-4 text-base font-medium md:text-sm sm:!text-xs">
-              I'm a developer and this is where I share my love for coding with the world. Every day, I immerse myself in the world of programming, turning lines of code into creative solutions. For me, coding isn't just a job - it's the art of problem-solving and creating amazing digital experiences. 
+              I&apos;m a developer and this is where I share my love for coding with the world. Every day, I immerse myself in the world of programming, turning lines of code into creative solutions. For me, coding isn&apos;t just a job - it&apos;s the art of problem-solving and creating amazing digital experiences. 
                             </p>
               {/* <div className="mt-2 flex items-center self-start lg:self-center">
                 <Link
