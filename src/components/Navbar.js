@@ -64,7 +64,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
-    setIsOpen(!isOpen);
+      setIsOpen(!isOpen);
   };
 
 
@@ -92,8 +92,9 @@ const Navbar = () => {
       <nav className="flex items-center justify-center">
         <CustomLink className="mr-4" href="/" title="Home" />
         <CustomLink className="mx-4" href="/about" title="About" />
+        {/* <CustomLink className="mx-4" href="#skills" title="Skill" /> */}
         <CustomLink className="mx-4" href="/experience" title="Experience" />
-        <CustomLink className="mx-4" href="/skills" title="Skill" />
+        
         {/* <CustomLink className="ml-4" href="/articles" title="Articles" /> */}
       </nav>
       <nav
@@ -179,8 +180,9 @@ const Navbar = () => {
       <nav className="flex items-center justify-center flex-col">
         <CustomMobileLink toggle={handleClick} className="mr-4 lg:m-0 lg:my-2" href="/" title="Home" />
         <CustomMobileLink toggle={handleClick} className="mx-4 lg:m-0 lg:my-2" href="/about" title="About" />
+        {/* <CustomMobileLink toggle={handleClick} className="mx-4 lg:m-0 lg:my-2" href="#skills" title="Skill" /> */}
         <CustomMobileLink toggle={handleClick} className="mx-4 lg:m-0 lg:my-2" href="/experience" title="Experience" />
-        <CustomMobileLink toggle={handleClick} className="mx-4 lg:m-0 lg:my-2" href="/skills" title="Skill" />
+        
         
         {/* <CustomMobileLink toggle={handleClick} className="mx-4 lg:m-0 lg:my-2" href="/projects" title="Projects" />
         <CustomMobileLink toggle={handleClick} className="ml-4 lg:m-0 lg:my-2" href="/articles" title="Articles" /> */}

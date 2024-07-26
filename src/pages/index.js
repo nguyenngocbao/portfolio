@@ -8,7 +8,9 @@ import Link from "next/link";
 import lightBulb from "../../public/images/svgs/miscellaneous_icons_1.svg";
 import profilePic from "../../public/images/profile/developer-pic-1.png";
 import TransitionEffect from "@/components/TransitionEffect";
-
+import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
+import Education from "@/components/Education";
 
 export default function Home() {
   
@@ -27,7 +29,7 @@ export default function Home() {
         className={`flex min-h-screen items-center text-dark dark:text-light sm:items-start`}
       >
         <Layout className="!pt-0 md:!pt-16 sm:!pt-16">
-          <div className="flex w-full items-start justify-between md:flex-col">
+          <div className="flex w-full items-start justify-between md:flex-col mt-16 md:mt-8 mb-64 md:mb-32">
             <div className="w-2/5 lg:hidden md:inline-block md:w-full">
               <Image
                 src={profilePic}
@@ -72,6 +74,9 @@ export default function Home() {
               </div> */}
             </div>
           </div>
+          <Skills id="#skill" />
+          <Experience id="#experience" />
+          <Education id="#education"/>
         </Layout>
 
         {/* <HireMe /> */}
