@@ -1,0 +1,98 @@
+name: Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - main
+      - sit
+      - stg
+      - prod
+
+env:
+  NODE_VERSION: '18.x'
+  DEPLOY_URL: https://portfolio.nguyenngocbao.info
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Setup Node.js
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Build the project
+      - name: Build project
+        run: npm run build
+        env:
+          NEXT_PUBLIC_APP_URL: ${{ env.DEPLOY_URL }}
+
+      # Deploy to environment
+      - name: Deploy to environment
+        id: deploy
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "deployment_url=${{ env.DEPLOY_URL }}" >> $GITHUB_OUTPUT
+            echo "environment=production" >> $GITHUB_OUTPUT
+            echo "version=${{ github.sha }}" >> $GITHUB_OUTPUT
+            echo "Branch: main -> Production"
+          elif [[ "${{ github.ref }}" == "refs/heads/sit" ]]; then
+            echo "deployment_url=https://dev.portfolio.nguyenngocbao.info" >> $GITHUB_OUTPUT
+            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "version=${{ github.sha }}" >> $GITHUB_OUTPUT
+            echo "Branch: sit -> Staging"
+          elif [[ "${{ github.ref }}" == "refs/heads/stg" ]]; then
+            echo "deployment_url=https://stg.portfolio.nguyenngocbao.info" >> $GITHUB_OUTPUT
+            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "version=${{ github.sha }}" >> $GITHUB_OUTPUT
+            echo "Branch: stg -> Staging"
+          elif [[ "${{ github.ref }}" == "refs/heads/prod" ]]; then
+            echo "deployment_url=${{ env.DEPLOY_URL }}" >> $GITHUB_OUTPUT
+            echo "environment=production" >> $GITHUB_OUTPUT
+            echo "version=${{ github.sha }}" >> $GITHUB_OUTPUT
+            echo "Branch: prod -> Production"
+          fi
+
+      # Deploy to Vercel (if configured)
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: ${{ steps.deploy.outputs.environment == 'staging' && '--prod' || '' }}
+          working-directory: ./
+
+      # Create deployment summary
+      - name: Deployment summary
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Environment:** ${{ steps.deploy.outputs.environment }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** ${{ steps.deploy.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "**URL:** ${{ steps.deploy.outputs.deployment_url }}" >> $GITHUB_STEP_SUMMARY
+
+      # Notify deployment status
+      - name: Notify deployment
+        if: always()
+        run: |
+          if [ "${{ steps.deploy.outputs.environment }}" == "production" ]; then
+            echo "⚠️ Production deployment completed!"
+            echo "Please review: ${{ steps.deploy.outputs.deployment_url }}"
+          else
+            echo "✅ ${{ steps.deploy.outputs.environment }} deployment completed!"
+          fi
